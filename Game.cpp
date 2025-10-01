@@ -39,6 +39,7 @@ void stages(vector<string>& words_level, vector<string>& hint, vector<string>& d
 {
     int random_word = rand() % words_level.size(); // Select a random word for this stage
     string answer = "";
+    bool gussed = false;
 
     for (int i = Attempts; i > 0; --i)
     {
@@ -80,6 +81,7 @@ void stages(vector<string>& words_level, vector<string>& hint, vector<string>& d
             // Remove the guessed word and its hint from the lists
             words_level.erase(words_level.begin() + random_word);
             hint.erase(hint.begin() + random_word);
+            gussed = true;
 
             system("pause");
             break;
@@ -88,7 +90,13 @@ void stages(vector<string>& words_level, vector<string>& hint, vector<string>& d
         system("cls");
     }
     // Reveal the correct word if not guessed
-    cout << "I lost the word was: " << words_level.at(random_word) << endl;
+    if (!gussed)
+{
+	cout << "I lost the word was: " << words_level.at(random_word) << endl;
+	words_level.erase(words_level.begin() + random_word);
+	hint.erase(hint.begin() + random_word);
+
+}
     system("pause");
 }
 
